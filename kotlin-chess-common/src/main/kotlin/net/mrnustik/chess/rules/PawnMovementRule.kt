@@ -39,14 +39,6 @@ class PawnMovementRule : BaseRule() {
         }
     }
 
-    private fun calculateGoForwardYCoordinate(currentPosition: Position): Int {
-        return when (currentPosition.piece.color) {
-            Color.BLACK -> currentPosition.y - 1
-            Color.WHITE -> currentPosition.y + 1
-            else -> currentPosition.y
-        }
-    }
-
     private fun isPositionAvailable(board: Board, x: Int, y: Int): Boolean {
 
         return isWithinBounds(x, y) && board.positions[y][x].isEmpty()
