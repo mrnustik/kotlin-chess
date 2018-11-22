@@ -23,7 +23,9 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testImplementation 'junit:junit:4.+'
 }
+
 compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
