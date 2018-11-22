@@ -2,6 +2,8 @@ package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.Position
+import net.mrnustik.chess.board.Board
+import net.mrnustik.chess.moves.Move
 import net.mrnustik.chess.pieces.Piece
 
 abstract class BaseRule : Rule {
@@ -19,6 +21,13 @@ abstract class BaseRule : Rule {
             Color.WHITE -> position.y + valueToBeAdded
             Color.BLACK -> position.y - valueToBeAdded
             else -> position.y
+        }
+    }
+
+    protected fun MutableSet<Move>.addMoveIfPossible(board: Board, position: Position, x: Int, y: Int){
+        if(isWithinBounds(x, y) &&
+                (board.positions[y][x].isEmpty() || isAttackable(position, board.positions[y][x]))) {
+            this.add(Move(position, board.positions[y][x]))
         }
     }
 }

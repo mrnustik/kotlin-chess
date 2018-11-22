@@ -2,18 +2,12 @@ package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
-import net.mrnustik.chess.board.factory.BoardFactory
-import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.moves.Move
-import net.mrnustik.chess.pieces.factory.StandardPieceFactory
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class PawnMovementRuleTests {
-    private val pieceFactory = StandardPieceFactory()
-    private val boardFactory : BoardFactory = StandardBoardFactory(pieceFactory)
-
+class PawnMovementRuleTests : BaseRuleTests() {
     @Test
     fun getValidMoves_onDefaultBoard_returnsAllValidMoves(){
         //Arrange

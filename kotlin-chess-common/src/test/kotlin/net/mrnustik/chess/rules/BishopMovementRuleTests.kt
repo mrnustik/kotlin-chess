@@ -2,18 +2,13 @@ package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
-import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.moves.Move
 import net.mrnustik.chess.pieces.NullPiece
-import net.mrnustik.chess.pieces.factory.StandardPieceFactory
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class BishopMovementRuleTests {
-    val pieceFactory = StandardPieceFactory()
-    val boardFactory = StandardBoardFactory(pieceFactory)
+class BishopMovementRuleTests : BaseRuleTests() {
 
     @Test
     fun getMoves_whenBlocked_noMovesReturned(){

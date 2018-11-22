@@ -3,13 +3,11 @@ package net.mrnustik.chess.rules
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
 import net.mrnustik.chess.moves.Move
-import net.mrnustik.chess.pieces.factory.StandardPieceFactory
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class PawnAttackingRuleTests {
-    private val pieceFactory = StandardPieceFactory()
+class PawnAttackingRuleTests : BaseRuleTests() {
 
     @Test
     fun getMoves_whenCanAttackOnLeft_returnsValidLeftMove() {
