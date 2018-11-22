@@ -1,6 +1,7 @@
 package net.mrnustik.chess
 
 
+import javafx.geometry.Pos
 import net.mrnustik.chess.pieces.Knight
 import org.junit.Assert.*
 import org.junit.Test
@@ -54,5 +55,29 @@ class PositionTests {
 
         //Assert
         assertFalse(result)
+    }
+
+    @Test
+    fun toString_of00_isa1() {
+        //Arrange
+        val position = Position(0, 0)
+
+        //Act
+        val stringRepresentation = position.toString()
+
+        //Assert
+        assertEquals("a1", stringRepresentation)
+    }
+
+    @Test
+    fun toString_of74_ish5() {
+        //Arrange
+        val position = Position(7, 4)
+
+        //Act
+        val stringRepresentation = position.toString()
+
+        //Assert
+        assertEquals("h5", stringRepresentation)
     }
 }
