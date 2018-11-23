@@ -4,7 +4,7 @@ import net.mrnustik.chess.Position
 import net.mrnustik.chess.board.Board
 import net.mrnustik.chess.moves.Move
 
-class KingMovementRule : BaseRule() {
+class KnightMovementRule : BaseRule() {
     override fun getValidMoves(board: Board, currentPosition: Position): Set<Move> {
         val moves = mutableSetOf<Move>()
         moves.addTopMoves(board, currentPosition)
