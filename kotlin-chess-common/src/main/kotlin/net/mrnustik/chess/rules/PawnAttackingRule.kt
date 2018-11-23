@@ -14,12 +14,12 @@ class PawnAttackingRule : BaseRule(){
     private fun MutableSet<Move>.addAttackableMovesIfPossible(board: Board, currentPosition: Position) {
         val rightAttackX = currentPosition.x + 1
         val rightAttackY = addToForwardDirectionOfPiece(currentPosition, 1)
-        if(isWithinBounds(rightAttackX, rightAttackY) && isAttackable(currentPosition, board.positions[rightAttackY][rightAttackX])){
+        if(isWithinBounds(rightAttackX, rightAttackY) && !board.positions[rightAttackY][rightAttackX].isEmpty()){
             this.add(Move(currentPosition, board.positions[rightAttackY][rightAttackX]))
         }
         val leftAttackX = currentPosition.x - 1
         val leftAttackY = addToForwardDirectionOfPiece(currentPosition, 1)
-        if(isWithinBounds(rightAttackX, rightAttackY) && isAttackable(currentPosition, board.positions[leftAttackY][leftAttackX])){
+        if(isWithinBounds(rightAttackX, rightAttackY) && !board.positions[leftAttackY][leftAttackX].isEmpty()){
             this.add(Move(currentPosition, board.positions[leftAttackY][leftAttackX]))
         }
     }
