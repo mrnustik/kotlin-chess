@@ -22,19 +22,19 @@ class KnightMovementRuleTests : BaseRuleTests() {
     }
 
     @Test
-    fun getMoves_whenSomeMovesBlocked_allReturned(){
+    fun getMoves_whenSomeMovesOutsideBounds_allReturned(){
         //Arrange
         val board = Board()
-        board.positions[4][4].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[6][5].piece = pieceFactory.createBishop(Color.WHITE)
-        board.positions[3][6].piece = pieceFactory.createBishop(Color.BLACK)
+        board.positions[1][1].piece = pieceFactory.createKing(Color.WHITE)
+        board.positions[2][3].piece = pieceFactory.createBishop(Color.WHITE)
+        board.positions[3][2].piece = pieceFactory.createBishop(Color.BLACK)
         val rule = KnightMovementRule()
 
         //Act
-        val moves = rule.getValidMoves(board, board.positions[4][4])
+        val moves = rule.getValidMoves(board, board.positions[1][1])
 
         //Assert
-        assertEquals(7, moves.size)
+        assertEquals(4, moves.size)
     }
 
 }

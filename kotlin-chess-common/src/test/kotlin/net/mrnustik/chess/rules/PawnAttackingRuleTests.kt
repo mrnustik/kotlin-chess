@@ -54,19 +54,4 @@ class PawnAttackingRuleTests : BaseRuleTests() {
         //Assert
         assertEquals(0, moves.size)
     }
-
-    @Test
-    fun getMoves_whenAttackingOwnPiece_noMovesReturned() {
-        //Arrange
-        val board = Board()
-        board.positions[1][1].piece = pieceFactory.createPawn(Color.WHITE)
-        board.positions[2][2].piece = pieceFactory.createBishop(Color.WHITE)
-        val rule = PawnAttackingRule()
-
-        //Act
-        val moves = rule.getValidMoves(board, board.positions[1][1])
-
-        //Assert
-        assertEquals(0, moves.size)
-    }
 }
