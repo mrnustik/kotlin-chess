@@ -25,7 +25,7 @@ class BishopMovementRuleTests : BaseRuleTests() {
         val moves = rule.getValidMoves(board, board.positions[3][3])
 
         //Assert
-        assertEquals(0, moves.size)
+        assertEquals(4, moves.size)
     }
 
     @Test
@@ -39,7 +39,7 @@ class BishopMovementRuleTests : BaseRuleTests() {
         val moves = rule.getValidMoves(board, board.positions[0][2])
 
         //Assert
-        assertEquals(5, moves.size)
+        assertEquals(6, moves.size)
     }
 
     @Test
@@ -71,7 +71,7 @@ class BishopMovementRuleTests : BaseRuleTests() {
         val moves = rule.getValidMoves(board, board.positions[3][3])
 
         //Assert
-        assertEquals(1, moves.size)
+        assertEquals(4, moves.size)
         assertTrue(moves.contains(Move(board.positions[3][3], board.positions[4][4])))
     }
 }

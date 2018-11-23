@@ -48,9 +48,7 @@ class BishopMovementRule : BaseRule() {
             if (movePosition.isEmpty()) {
                 this.add(Move(position, movePosition))
             } else {
-                if(isAttackable(position, movePosition)) {
-                    this.add(Move(position, movePosition))
-                }
+                this.add(Move(position, movePosition))
                 break
             }
             x = changeX(x)
