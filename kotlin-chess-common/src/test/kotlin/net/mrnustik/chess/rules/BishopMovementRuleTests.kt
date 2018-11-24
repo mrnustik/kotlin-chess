@@ -14,11 +14,11 @@ class BishopMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenBlocked_noMovesReturned(){
         //Arrange
         val board = Board()
-        board.positions[3][3].piece = pieceFactory.createBishop(Color.WHITE)
-        board.positions[2][2].piece = pieceFactory.createPawn(Color.WHITE)
-        board.positions[4][4].piece = pieceFactory.createPawn(Color.WHITE)
-        board.positions[4][2].piece = pieceFactory.createPawn(Color.WHITE)
-        board.positions[2][4].piece = pieceFactory.createPawn(Color.WHITE)
+        board.addPiece(3,3,pieceFactory.createBishop(Color.WHITE))
+        board.addPiece(2,2,pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(4,4,pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(4,2,pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(2,4,pieceFactory.createPawn(Color.WHITE))
         val rule = BishopMovementRule()
 
         //Act
@@ -46,7 +46,7 @@ class BishopMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenMovesAvailableInAllQuadrants_availableMovesReturned(){
         //Arrange
         val board = Board()
-        board.positions[4][4].piece = pieceFactory.createBishop(Color.BLACK)
+        board.addPiece(4,4, pieceFactory.createBishop(Color.BLACK))
         val rule = BishopMovementRule()
 
         //Act
@@ -60,11 +60,11 @@ class BishopMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenEnemyCanBeTaken_attackMoveReturned(){
         //Arrange
         val board = Board()
-        board.positions[3][3].piece = pieceFactory.createBishop(Color.WHITE)
-        board.positions[2][2].piece = pieceFactory.createPawn(Color.WHITE)
-        board.positions[4][4].piece = pieceFactory.createPawn(Color.BLACK)
-        board.positions[4][2].piece = pieceFactory.createPawn(Color.WHITE)
-        board.positions[2][4].piece = pieceFactory.createPawn(Color.WHITE)
+        board.addPiece(3,3,pieceFactory.createBishop(Color.WHITE))
+        board.addPiece(2,2,pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(4,4,pieceFactory.createPawn(Color.BLACK))
+        board.addPiece(4,2,pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(2,4,pieceFactory.createPawn(Color.WHITE))
         val rule = BishopMovementRule()
 
         //Act

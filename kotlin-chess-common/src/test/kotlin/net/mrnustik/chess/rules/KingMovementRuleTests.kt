@@ -11,7 +11,7 @@ class KingMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenNoMovesBlocked_returnsAll() {
         //Arrange
         val board = Board()
-        board.positions[4][4].piece = pieceFactory.createKing(Color.BLACK)
+        board.addPiece(4,4,pieceFactory.createKing(Color.BLACK))
         val rule = KingMovementRule()
 
         //Act
@@ -25,7 +25,7 @@ class KingMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenSomeMovesBlockedByCorner_returnsAll() {
         //Arrange
         val board = Board()
-        board.positions[0][0].piece = pieceFactory.createKing(Color.BLACK)
+        board.addPiece(0,0, pieceFactory.createKing(Color.BLACK))
         val rule = KingMovementRule()
 
         //Act

@@ -13,8 +13,8 @@ class PawnAttackingRuleTests : BaseRuleTests() {
     fun getMoves_whenCanAttackOnLeft_returnsValidLeftMove() {
         //Arrange
         val board = Board()
-        board.positions[1][1].piece = pieceFactory.createPawn(Color.WHITE)
-        board.positions[2][0].piece = pieceFactory.createBishop(Color.BLACK)
+        board.addPiece(1,1,pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(2,0,pieceFactory.createBishop(Color.BLACK))
         val rule = PawnAttackingRule()
 
         //Act
@@ -29,8 +29,8 @@ class PawnAttackingRuleTests : BaseRuleTests() {
     fun getMoves_whenCanAttackOnRight_returnsValidRightMove() {
         //Arrange
         val board = Board()
-        board.positions[1][1].piece = pieceFactory.createPawn(Color.WHITE)
-        board.positions[2][2].piece = pieceFactory.createBishop(Color.BLACK)
+        board.addPiece(1,1, pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(2,2, pieceFactory.createBishop(Color.BLACK))
         val rule = PawnAttackingRule()
 
         //Act
@@ -45,7 +45,7 @@ class PawnAttackingRuleTests : BaseRuleTests() {
     fun getMoves_whenNoPiecesCanBeAttacked_noMovesReturned() {
         //Arrange
         val board = Board()
-        board.positions[1][1].piece = pieceFactory.createPawn(Color.WHITE)
+        board.addPiece(1,1, pieceFactory.createPawn(Color.WHITE))
         val rule = PawnAttackingRule()
 
         //Act

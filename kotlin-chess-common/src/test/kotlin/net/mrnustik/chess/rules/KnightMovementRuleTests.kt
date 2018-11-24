@@ -11,7 +11,7 @@ class KnightMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenAllMovesPossible_allReturned(){
         //Arrange
         val board = Board()
-        board.positions[4][4].piece = pieceFactory.createKing(Color.WHITE)
+        board.addPiece(4,4, pieceFactory.createKing(Color.WHITE))
         val rule = KnightMovementRule()
 
         //Act
@@ -25,9 +25,9 @@ class KnightMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenSomeMovesOutsideBounds_allReturned(){
         //Arrange
         val board = Board()
-        board.positions[1][1].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[2][3].piece = pieceFactory.createBishop(Color.WHITE)
-        board.positions[3][2].piece = pieceFactory.createBishop(Color.BLACK)
+        board.addPiece(1,1, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(2,3, pieceFactory.createBishop(Color.WHITE))
+        board.addPiece(3,2, pieceFactory.createBishop(Color.BLACK))
         val rule = KnightMovementRule()
 
         //Act

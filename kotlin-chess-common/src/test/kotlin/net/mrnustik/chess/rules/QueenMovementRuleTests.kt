@@ -11,7 +11,7 @@ class QueenMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenNotBlocked_returnsAllMoves() {
         //Arrange
         val board = Board()
-        board.positions[4][4].piece = pieceFactory.createQueen(Color.BLACK)
+        board.addPiece(4,4, pieceFactory.createQueen(Color.BLACK))
         val rule = QueenMovementRule()
 
         //Act
@@ -25,15 +25,15 @@ class QueenMovementRuleTests : BaseRuleTests() {
     fun getMoves_whenBlockedAtAllSides_returnsAllMoves() {
         //Arrange
         val board = Board()
-        board.positions[4][4].piece = pieceFactory.createQueen(Color.BLACK)
-        board.positions[5][4].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[3][4].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[5][5].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[4][5].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[3][5].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[3][3].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[5][3].piece = pieceFactory.createKing(Color.WHITE)
-        board.positions[4][3].piece = pieceFactory.createKing(Color.WHITE)
+        board.addPiece(4,4, pieceFactory.createQueen(Color.BLACK))
+        board.addPiece(5,4, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(3,4, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(5,5, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(4,5, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(3,5, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(3,3, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(5,3, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(4,3, pieceFactory.createKing(Color.WHITE))
         val rule = QueenMovementRule()
 
         //Act
