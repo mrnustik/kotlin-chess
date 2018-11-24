@@ -1,9 +1,21 @@
 package net.mrnustik.chess.board
 
 import net.mrnustik.chess.Position
+import net.mrnustik.chess.pieces.Piece
 
 class Board {
     val positions: Array<Array<Position>> = initializeEmptyPositions()
+
+    fun addPiece(x: Int, y: Int, piece: Piece) {
+        if(!isWithinBounds(x, y)) {
+            throw IllegalArgumentException("Position($x,$y) is outside of board bounds.")
+        }
+        positions[x][y].piece = piece
+    }
+
+    private fun isWithinBounds(x: Int, y: Int): Boolean {
+        return x in (0..7) && y in (0..7)
+    }
 
     private fun initializeEmptyPositions(): Array<Array<Position>> {
         return arrayOf(
