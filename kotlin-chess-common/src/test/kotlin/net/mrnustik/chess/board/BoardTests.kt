@@ -1,6 +1,7 @@
 package net.mrnustik.chess.board
 
 import net.mrnustik.chess.Color
+import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.pieces.factory.PieceFactory
 import net.mrnustik.chess.pieces.factory.StandardPieceFactory
 import org.junit.Assert.assertEquals
@@ -52,6 +53,39 @@ class BoardTests {
         assertEquals(2, position.y)
         assertEquals(piece, position.piece)
         assertFalse(position.isEmpty())
+    }
 
+    @Test
+    fun getAllPlayerPiecePositions_withOnePieceOfEachColor_returnsOnlyOnePosition(){
+        //Arrange
+        val board = Board()
+        val whitePiece = pieceFactory.createBishop(Color.WHITE)
+        board.addPiece(0,2, whitePiece)
+        val blackPiece = pieceFactory.createBishop(Color.BLACK)
+        board.addPiece(2,0, blackPiece)
+
+        //Act
+        val piecePositions = board.getAllPlayerPiecePositions(Color.WHITE)
+
+        //Assert
+        assertEquals(1, piecePositions.size)
+        val position = piecePositions.first()
+        assertEquals(0, position.x)
+        assertEquals(2, position.y)
+        assertEquals(whitePiece, position.piece)
+        assertFalse(position.isEmpty())
+    }
+
+    @Test
+    fun getAllValidMoves_withStandardBoard_returnsAllOpeningMoves() {
+        //Arrange
+        val boardFactory = StandardBoardFactory(StandardPieceFactory())
+        val board = boardFactory.createBoard()
+
+        //Act
+        val allValidMoves = board.getAllValidMoves(Color.WHITE)
+
+        //Assert
+        assertEquals(20, allValidMoves.size)
     }
 }

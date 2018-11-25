@@ -13,16 +13,16 @@ class StandardBoardFactory(val pieceFactory: PieceFactory) : BoardFactory {
     }
 
     private fun createBlackPieces(board: Board) {
-        board.addPiece(0,7,pieceFactory.createRook(Color.WHITE));
-        board.addPiece(1,7,pieceFactory.createKnight(Color.WHITE))
-        board.addPiece(2,7,pieceFactory.createBishop(Color.WHITE))
-        board.addPiece(3,7,pieceFactory.createQueen(Color.WHITE))
-        board.addPiece(4,7,pieceFactory.createKing(Color.WHITE))
-        board.addPiece(5,7,pieceFactory.createBishop(Color.WHITE))
-        board.addPiece(6,7,pieceFactory.createKnight(Color.WHITE))
-        board.addPiece(7,7,pieceFactory.createRook(Color.WHITE))
+        board.addPiece(0,7,pieceFactory.createRook(Color.BLACK));
+        board.addPiece(1,7,pieceFactory.createKnight(Color.BLACK))
+        board.addPiece(2,7,pieceFactory.createBishop(Color.BLACK))
+        board.addPiece(3,7,pieceFactory.createQueen(Color.BLACK))
+        board.addPiece(4,7,pieceFactory.createKing(Color.BLACK))
+        board.addPiece(5,7,pieceFactory.createBishop(Color.BLACK))
+        board.addPiece(6,7,pieceFactory.createKnight(Color.BLACK))
+        board.addPiece(7,7,pieceFactory.createRook(Color.BLACK))
         for(i in (0..7)){
-            board.addPiece(i,6,pieceFactory.createPawn(Color.WHITE))
+            board.addPiece(i,6,pieceFactory.createPawn(Color.BLACK))
         }
     }
 
