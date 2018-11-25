@@ -13,6 +13,18 @@ class Board {
         positions[y][x].piece = piece
     }
 
+    fun getAllPiecePositions() : Set<Position> {
+        val piecePositions = mutableSetOf<Position>()
+        for (line in positions) {
+            for (position in line) {
+                if(!position.isEmpty()){
+                    piecePositions.add(position)
+                }
+            }
+        }
+        return piecePositions
+    }
+
     private fun isWithinBounds(x: Int, y: Int): Boolean {
         return x in (0..7) && y in (0..7)
     }
