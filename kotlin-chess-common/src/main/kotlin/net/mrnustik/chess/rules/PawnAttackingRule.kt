@@ -19,7 +19,7 @@ class PawnAttackingRule : BaseRule(){
         }
         val leftAttackX = currentPosition.x - 1
         val leftAttackY = addToForwardDirectionOfPiece(currentPosition, 1)
-        if(isWithinBounds(rightAttackX, rightAttackY) && !board.positions[leftAttackY][leftAttackX].isEmpty()){
+        if(isWithinBounds(leftAttackX, leftAttackY) && !board.positions[leftAttackY][leftAttackX].isEmpty()){
             this.add(Move(currentPosition, board.positions[leftAttackY][leftAttackX]))
         }
     }
