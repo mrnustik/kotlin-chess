@@ -7,6 +7,7 @@ import net.mrnustik.chess.moves.Move
 import net.mrnustik.chess.pieces.factory.PieceFactory
 import net.mrnustik.chess.pieces.factory.StandardPieceFactory
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class StandardChessMoveValidatorTests  {
@@ -18,7 +19,7 @@ class StandardChessMoveValidatorTests  {
         //Arrange
         val board = Board()
         board.addPiece(0,0, pieceFactory.createRook(Color.BLACK))
-        board.addPiece(1,0, pieceFactory.createRook(Color.BLACK))
+        board.addPiece(0,1, pieceFactory.createRook(Color.BLACK))
         val move = Move(board.positions[0][0], board.positions[1][0])
         val validator = StandardChessMoveValidator()
 
@@ -41,7 +42,7 @@ class StandardChessMoveValidatorTests  {
         val isValid = validator.isMoveValid(board, e4Opening)
 
         //Assert
-        assertFalse(isValid)
+        assertTrue(isValid)
     }
 
 }
