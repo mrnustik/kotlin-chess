@@ -10,7 +10,7 @@ class Board {
         if(!isWithinBounds(x, y)) {
             throw IllegalArgumentException("Position($x,$y) is outside of board bounds.")
         }
-        positions[x][y].piece = piece
+        positions[y][x].piece = piece
     }
 
     private fun isWithinBounds(x: Int, y: Int): Boolean {

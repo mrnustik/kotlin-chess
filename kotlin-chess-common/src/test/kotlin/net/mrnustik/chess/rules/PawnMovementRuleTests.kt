@@ -27,8 +27,8 @@ class PawnMovementRuleTests : BaseRuleTests() {
     fun getValidMoves_whenPawnBlocked_returnsNoMoves(){
         //Arrange
         val board = Board()
-        board.addPiece(1,0, pieceFactory.createPawn(Color.WHITE))
-        board.addPiece(2,0, pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(0,1, pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(0,2, pieceFactory.createPawn(Color.WHITE))
         val rule = PawnMovementRule()
 
         //Act
@@ -42,8 +42,8 @@ class PawnMovementRuleTests : BaseRuleTests() {
     fun getValidMoves_whenDoubleStepIsBlocked_returnsValidMoves(){
         //Arrange
         val board = Board()
-        board.addPiece(1,0,pieceFactory.createPawn(Color.WHITE))
-        board.addPiece(3,0,pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(0,1,pieceFactory.createPawn(Color.WHITE))
+        board.addPiece(0,3,pieceFactory.createPawn(Color.WHITE))
         val rule = PawnMovementRule()
 
         //Act

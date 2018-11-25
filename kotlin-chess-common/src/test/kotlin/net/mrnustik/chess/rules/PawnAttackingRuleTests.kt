@@ -14,7 +14,7 @@ class PawnAttackingRuleTests : BaseRuleTests() {
         //Arrange
         val board = Board()
         board.addPiece(1,1,pieceFactory.createPawn(Color.WHITE))
-        board.addPiece(2,0,pieceFactory.createBishop(Color.BLACK))
+        board.addPiece(0,2,pieceFactory.createBishop(Color.BLACK))
         val rule = PawnAttackingRule()
 
         //Act

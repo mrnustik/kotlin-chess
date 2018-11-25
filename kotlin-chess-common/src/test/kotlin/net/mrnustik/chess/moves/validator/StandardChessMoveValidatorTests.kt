@@ -2,6 +2,7 @@ package net.mrnustik.chess.moves.validator
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
+import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.moves.Move
 import net.mrnustik.chess.pieces.factory.PieceFactory
 import net.mrnustik.chess.pieces.factory.StandardPieceFactory
@@ -23,6 +24,21 @@ class StandardChessMoveValidatorTests  {
 
         //Act
         val isValid = validator.isMoveValid(board, move)
+
+        //Assert
+        assertFalse(isValid)
+    }
+
+    @Test
+    fun isMoveValid_completelyValidOpening_returnsTrue()
+    {
+        //Arrange
+        val board = StandardBoardFactory(StandardPieceFactory()).createBoard()
+        val e4Opening = Move(board.positions[1][4], board.positions[3][4])
+        val validator = StandardChessMoveValidator()
+
+        //Act
+        val isValid = validator.isMoveValid(board, e4Opening)
 
         //Assert
         assertFalse(isValid)
