@@ -114,6 +114,6 @@ class BoardTests {
         val e1toe2Opening = Move(board.positions[0][4], board.positions[1][4])
 
         //Act
-        val newBoard = board.performMove(e1toe2Opening)
+        board.performMove(e1toe2Opening)
     }
 }
