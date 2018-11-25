@@ -1,10 +1,16 @@
 package net.mrnustik.chess.board
 
+import net.mrnustik.chess.Color
 import net.mrnustik.chess.Position
+import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.moves.validator.MoveValidator
+import net.mrnustik.chess.moves.validator.StandardChessMoveValidator
 import net.mrnustik.chess.pieces.Piece
 
 class Board {
     val positions: Array<Array<Position>> = initializeEmptyPositions()
+
+    val moveValidator: MoveValidator = StandardChessMoveValidator()
 
     fun addPiece(x: Int, y: Int, piece: Piece) {
         if(!isWithinBounds(x, y)) {
@@ -23,6 +29,30 @@ class Board {
             }
         }
         return piecePositions
+    }
+
+    fun getAllPlayerPiecePositions(playerColor: Color) : Set<Position> {
+        val piecePositions = mutableSetOf<Position>()
+        for (line in positions) {
+            for (position in line) {
+                if(!position.isEmpty() && position.piece.color == playerColor){
+                    piecePositions.add(position)
+                }
+            }
+        }
+        return piecePositions
+    }
+
+    fun getAllValidMoves(playerColor: Color) : Set<Move> {
+        val piecePositions = getAllPlayerPiecePositions(playerColor)
+        val moves = mutableSetOf<Move>()
+        for (position in piecePositions) {
+            val piece = position.piece
+            for (rule in piece.getAppliedRules()) {
+                moves.addAll(rule.getValidMoves(this, position))
+            }
+        }
+        return moves.filter { m -> moveValidator.isMoveValid(this, m) }.toSet()
     }
 
     private fun isWithinBounds(x: Int, y: Int): Boolean {
