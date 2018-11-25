@@ -2,15 +2,17 @@ package net.mrnustik.chess.board
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.Position
+import net.mrnustik.chess.exceptions.InvalidMoveException
 import net.mrnustik.chess.moves.Move
 import net.mrnustik.chess.moves.validator.MoveValidator
 import net.mrnustik.chess.moves.validator.StandardChessMoveValidator
+import net.mrnustik.chess.pieces.NullPiece
 import net.mrnustik.chess.pieces.Piece
 
 class Board {
-    val positions: Array<Array<Position>> = initializeEmptyPositions()
+    var positions: Array<Array<Position>> = initializeEmptyPositions()
 
-    val moveValidator: MoveValidator = StandardChessMoveValidator()
+    private val moveValidator: MoveValidator = StandardChessMoveValidator()
 
     fun addPiece(x: Int, y: Int, piece: Piece) {
         if(!isWithinBounds(x, y)) {
@@ -53,6 +55,21 @@ class Board {
             }
         }
         return moves.filter { m -> moveValidator.isMoveValid(this, m) }.toSet()
+    }
+
+    fun performMove(move: Move) : Board{
+        if(!moveValidator.isMoveValid(this, move))
+            throw InvalidMoveException("Move $move is not valid on this board.")
+        val board : Board = this.clone()
+        board.positions[move.from.y][move.from.x].piece = NullPiece()
+        board.positions[move.to.y][move.to.x].piece = move.usedPiece
+        return board
+    }
+
+    private fun clone(): Board {
+        val board = Board()
+        board.positions = this.positions.clone()
+        return board
     }
 
     private fun isWithinBounds(x: Int, y: Int): Boolean {

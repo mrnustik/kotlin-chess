@@ -2,10 +2,11 @@ package net.mrnustik.chess.board
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.factory.StandardBoardFactory
+import net.mrnustik.chess.exceptions.InvalidMoveException
+import net.mrnustik.chess.moves.Move
 import net.mrnustik.chess.pieces.factory.PieceFactory
 import net.mrnustik.chess.pieces.factory.StandardPieceFactory
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
+import org.junit.Assert.*
 import org.junit.Test
 
 class BoardTests {
@@ -87,5 +88,32 @@ class BoardTests {
 
         //Assert
         assertEquals(20, allValidMoves.size)
+    }
+
+    @Test
+    fun performMove_withValidOpeningMove_createsNewBoardWithPerformedMove() {
+        //Arrange
+        val boardFactory = StandardBoardFactory(StandardPieceFactory())
+        val board = boardFactory.createBoard()
+        val e4Opening = Move(board.positions[1][4], board.positions[3][4])
+
+        //Act
+        val newBoard = board.performMove(e4Opening)
+
+        //Assert
+        assertNotEquals(board, newBoard)
+        assertTrue(newBoard.positions[1][4].isEmpty())
+        assertFalse(newBoard.positions[3][4].isEmpty())
+    }
+
+    @Test(expected = InvalidMoveException::class)
+    fun performMove_withInvalidMove_throwsIllegalMoveException() {
+        //Arrange
+        val boardFactory = StandardBoardFactory(StandardPieceFactory())
+        val board = boardFactory.createBoard()
+        val e1toe2Opening = Move(board.positions[0][4], board.positions[1][4])
+
+        //Act
+        val newBoard = board.performMove(e1toe2Opening)
     }
 }
