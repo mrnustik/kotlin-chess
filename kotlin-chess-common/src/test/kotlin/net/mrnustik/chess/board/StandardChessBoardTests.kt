@@ -6,6 +6,7 @@ import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.exceptions.InvalidMoveException
 import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.pieces.*
 import net.mrnustik.chess.pieces.factory.PieceFactory
 import net.mrnustik.chess.pieces.factory.StandardPieceFactory
 import org.junit.Assert.*
@@ -131,5 +132,20 @@ class StandardChessBoardTests {
 
         //Assert
         assert(result).isTrue()
+    }
+
+    @Test
+    fun equals_nonEqualBoards_returnsFalse() {
+        //Arrange
+        val boardFactory = StandardBoardFactory(StandardPieceFactory())
+        val board1 = boardFactory.createBoard()
+        val board2 = boardFactory.createBoard()
+        board2.positions[0][0].piece = NullPiece()
+
+        //Act
+        val result = board1.equals(board2)
+
+        //Assert
+        assert(result).isFalse()
     }
 }
