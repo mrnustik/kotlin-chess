@@ -1,9 +1,7 @@
 package net.mrnustik.chess.moves
 
-import net.mrnustik.chess.Position
-import net.mrnustik.chess.pieces.Piece
+import net.mrnustik.chess.board.*
 
-data class Move(val from: Position, val to: Position) {
-    val usedPiece: Piece = from.piece
-    val takenPiece: Piece = to.piece
+interface Move {
+    fun apply(board: Board)
 }

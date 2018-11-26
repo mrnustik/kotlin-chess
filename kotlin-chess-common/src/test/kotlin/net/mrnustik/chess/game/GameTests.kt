@@ -6,7 +6,7 @@ import assertk.assertions.*
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.factory.BoardFactory
 import net.mrnustik.chess.board.factory.StandardBoardFactory
-import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.moves.BasicMove
 import net.mrnustik.chess.pieces.*
 import net.mrnustik.chess.pieces.factory.PieceFactory
 import net.mrnustik.chess.pieces.factory.StandardPieceFactory
@@ -28,7 +28,7 @@ class GameTests {
         //Given
         val startingBoard = boardFactory.createBoard()
         val game = Game(startingBoard, TestingPlayer(Color.WHITE), TestingPlayer(Color.BLACK))
-        val move = Move(game.board.positions[1][4], game.board.positions[3][4])
+        val move = BasicMove(game.board.positions[1][4], game.board.positions[3][4])
 
         //When
         game.performMove(move)
@@ -42,7 +42,7 @@ class GameTests {
         //Given
         val board = boardFactory.createBoard()
         val game = Game(board, TestingPlayer(Color.WHITE), TestingPlayer(Color.BLACK))
-        val move = Move(game.board.positions[1][4], game.board.positions[3][4])
+        val move = BasicMove(game.board.positions[1][4], game.board.positions[3][4])
 
         //When
         game.performMove(move)
@@ -56,7 +56,7 @@ class GameTests {
         //Given
         val board = boardFactory.createBoard()
         val game = Game(board, TestingPlayer(Color.WHITE), TestingPlayer(Color.BLACK))
-        val move = Move(game.board.positions[1][4], game.board.positions[3][4])
+        val move = BasicMove(game.board.positions[1][4], game.board.positions[3][4])
 
         //When
         game.performMove(move)
@@ -104,7 +104,7 @@ class GameTests {
         val whitePlayer = TestingPlayer(Color.WHITE)
         val blackPlayer = TestingPlayer(Color.BLACK)
         val game = Game(board, whitePlayer, blackPlayer)
-        val move = Move(game.board.positions[0][4], game.board.positions[1][4])
+        val move = BasicMove(game.board.positions[0][4], game.board.positions[1][4])
 
         //When
         game.performMove(move)
@@ -121,7 +121,7 @@ class GameTests {
         val whitePlayer = TestingPlayer(Color.WHITE)
         val blackPlayer = TestingPlayer(Color.BLACK)
         val game = Game(board, whitePlayer, blackPlayer)
-        val move = Move(game.board.positions[0][0], game.board.positions[1][0])
+        val move = BasicMove(game.board.positions[0][0], game.board.positions[1][0])
 
         //When
         game.performMove(move)

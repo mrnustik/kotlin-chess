@@ -1,9 +1,7 @@
 package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
-import net.mrnustik.chess.board.Board
-import net.mrnustik.chess.board.StandardChessBoard
-import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.moves.BasicMove
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -23,7 +21,7 @@ class PawnAttackingRuleTests : BaseRuleTests() {
 
         //Assert
         assertEquals(1, moves.size)
-        assertTrue(moves.contains(Move(board.positions[1][1], board.positions[2][0])))
+        assertTrue(moves.contains(BasicMove(board.positions[1][1], board.positions[2][0])))
     }
 
     @Test
@@ -39,7 +37,7 @@ class PawnAttackingRuleTests : BaseRuleTests() {
 
         //Assert
         assertEquals(1, moves.size)
-        assertTrue(moves.contains(Move(board.positions[1][1], board.positions[2][2])))
+        assertTrue(moves.contains(BasicMove(board.positions[1][1], board.positions[2][2])))
     }
 
     @Test

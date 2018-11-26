@@ -5,7 +5,7 @@ import assertk.assertions.*
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.exceptions.InvalidMoveException
-import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.moves.BasicMove
 import net.mrnustik.chess.pieces.*
 import net.mrnustik.chess.pieces.factory.PieceFactory
 import net.mrnustik.chess.pieces.factory.StandardPieceFactory
@@ -98,7 +98,7 @@ class StandardChessBoardTests {
         //Arrange
         val boardFactory = StandardBoardFactory(StandardPieceFactory())
         val board = boardFactory.createBoard()
-        val e4Opening = Move(board.positions[1][4], board.positions[3][4])
+        val e4Opening = BasicMove(board.positions[1][4], board.positions[3][4])
 
         //Act
         val newBoard = board.performMove(e4Opening)
@@ -114,7 +114,7 @@ class StandardChessBoardTests {
         //Arrange
         val boardFactory = StandardBoardFactory(StandardPieceFactory())
         val board = boardFactory.createBoard()
-        val e1toe2Opening = Move(board.positions[0][4], board.positions[1][4])
+        val e1toe2Opening = BasicMove(board.positions[0][4], board.positions[1][4])
 
         //Act
         board.performMove(e1toe2Opening)

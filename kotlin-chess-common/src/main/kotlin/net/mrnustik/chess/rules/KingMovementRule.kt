@@ -2,17 +2,17 @@ package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Position
 import net.mrnustik.chess.board.Board
-import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.moves.BasicMove
 
 class KingMovementRule : BaseRule() {
 
-    override fun getValidMoves(board: Board, currentPosition: Position): Set<Move> {
-        val moves = mutableSetOf<Move>()
+    override fun getValidMoves(board: Board, currentPosition: Position): Set<BasicMove> {
+        val moves = mutableSetOf<BasicMove>()
         moves.addPossibleMoves(board, currentPosition)
         return moves
     }
 
-    private fun MutableSet<Move>.addPossibleMoves(board: Board, currentPosition: Position) {
+    private fun MutableSet<BasicMove>.addPossibleMoves(board: Board, currentPosition: Position) {
         this.addMoveIfPossible(board, currentPosition, currentPosition.x + 1, currentPosition.y + 1)
         this.addMoveIfPossible(board, currentPosition, currentPosition.x + 1, currentPosition.y - 1)
         this.addMoveIfPossible(board, currentPosition, currentPosition.x - 1, currentPosition.y + 1)

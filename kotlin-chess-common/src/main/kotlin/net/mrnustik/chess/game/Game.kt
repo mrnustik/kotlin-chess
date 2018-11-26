@@ -2,12 +2,12 @@ package net.mrnustik.chess.game
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
-import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.moves.BasicMove
 import net.mrnustik.chess.pieces.*
 import net.mrnustik.chess.player.Player
 
 class Game(var board: Board, val whitePlayer: Player, val blackPlayer: Player) {
-    val movesHistory : MutableList<Move> = mutableListOf()
+    val movesHistory : MutableList<BasicMove> = mutableListOf()
     val castlePossibilitiesMap = mapOf(Color.BLACK to CastlePossibility(), Color.WHITE to CastlePossibility())
     var activePlayerColor: Color = Color.WHITE
 
@@ -18,7 +18,7 @@ class Game(var board: Board, val whitePlayer: Player, val blackPlayer: Player) {
             else -> null
         }
 
-    fun getAllValidMovesForActivePlayer() : Set<Move> {
+    fun getAllValidMovesForActivePlayer() : Set<BasicMove> {
         val simpleMoves = board.getAllValidMoves(activePlayerColor).toMutableSet()
         val castlePossibilities = castlePossibilitiesMap[activePlayerColor]
         if(castlePossibilities?.isAnyCastlePossible() == true) {
@@ -27,14 +27,14 @@ class Game(var board: Board, val whitePlayer: Player, val blackPlayer: Player) {
         return simpleMoves
     }
 
-    fun performMove(move: Move) {
+    fun performMove(move: BasicMove) {
         board = board.performMove(move)
         detectCastlePossibilityChange(move)
         movesHistory.add(move)
         activePlayerColor = activePlayerColor.getOpositeColor()
     }
 
-    private fun detectCastlePossibilityChange(move: Move) {
+    private fun detectCastlePossibilityChange(move: BasicMove) {
         if(move.usedPiece is King) {
             castlePossibilitiesMap[activePlayerColor]?.isQueenCastlePossible = false
             castlePossibilitiesMap[activePlayerColor]?.isKingCastlePossible = false

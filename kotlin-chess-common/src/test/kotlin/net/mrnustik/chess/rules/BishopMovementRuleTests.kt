@@ -1,9 +1,7 @@
 package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
-import net.mrnustik.chess.board.Board
-import net.mrnustik.chess.board.StandardChessBoard
-import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.moves.BasicMove
 import net.mrnustik.chess.pieces.NullPiece
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -73,6 +71,6 @@ class BishopMovementRuleTests : BaseRuleTests() {
 
         //Assert
         assertEquals(4, moves.size)
-        assertTrue(moves.contains(Move(board.positions[3][3], board.positions[4][4])))
+        assertTrue(moves.contains(BasicMove(board.positions[3][3], board.positions[4][4])))
     }
 }

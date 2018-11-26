@@ -3,37 +3,37 @@ package net.mrnustik.chess.rules
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.Position
 import net.mrnustik.chess.board.Board
-import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.moves.BasicMove
 
 class PawnMovementRule : BaseRule() {
-    override fun getValidMoves(board: Board, currentPosition: Position): Set<Move> {
-        val moves = mutableListOf<Move>()
+    override fun getValidMoves(board: Board, currentPosition: Position): Set<BasicMove> {
+        val moves = mutableListOf<BasicMove>()
         moves.addForwardMoveIfPossible(board, currentPosition)
         moves.addDoubleForwardMoveIfPossible(board, currentPosition);
         return moves.toSet()
     }
 
-    private fun MutableList<Move>.addForwardMoveIfPossible(board: Board, currentPosition: Position) {
+    private fun MutableList<BasicMove>.addForwardMoveIfPossible(board: Board, currentPosition: Position) {
         val x = currentPosition.x
         val y = addToForwardDirectionOfPiece(currentPosition, 1)
         if (isPositionAvailable(board, x, y)) {
-            this.add(Move(currentPosition, board.positions[y][x]))
+            this.add(BasicMove(currentPosition, board.positions[y][x]))
         }
     }
 
-    private fun MutableList<Move>.addDoubleForwardMoveIfPossible(board: Board, currentPosition: Position) {
+    private fun MutableList<BasicMove>.addDoubleForwardMoveIfPossible(board: Board, currentPosition: Position) {
         val x = currentPosition.x
         var y = addToForwardDirectionOfPiece(currentPosition, 1)
         if (isPositionAvailable(board, x, y)) {
             if (currentPosition.y == 1 && currentPosition.piece.color == Color.WHITE) {
                 y++
                 if (isPositionAvailable(board, x, y)) {
-                    this.add(Move(currentPosition, board.positions[y][x]))
+                    this.add(BasicMove(currentPosition, board.positions[y][x]))
                 }
             } else if (currentPosition.y == 6 && currentPosition.piece.color == Color.BLACK) {
                 y--
                 if (isPositionAvailable(board, x, y)) {
-                    this.add(Move(currentPosition, board.positions[y][x]))
+                    this.add(BasicMove(currentPosition, board.positions[y][x]))
                 }
             }
         }

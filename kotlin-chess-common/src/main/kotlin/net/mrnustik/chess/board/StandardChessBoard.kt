@@ -3,9 +3,9 @@ package net.mrnustik.chess.board
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.Position
 import net.mrnustik.chess.exceptions.InvalidMoveException
-import net.mrnustik.chess.moves.Move
-import net.mrnustik.chess.moves.validator.MoveValidator
-import net.mrnustik.chess.moves.validator.StandardChessMoveValidator
+import net.mrnustik.chess.moves.*
+import net.mrnustik.chess.moves.validator.BasicMoveValidator
+import net.mrnustik.chess.moves.validator.StandardChessBasicMoveValidator
 import net.mrnustik.chess.pieces.NullPiece
 import net.mrnustik.chess.pieces.Piece
 import java.util.*
@@ -16,7 +16,7 @@ class StandardChessBoard(override val positions: Array<Array<Position>> = initia
                 .any { it.to.x == x && it.to.y == y }
     }
 
-    private val moveValidator: MoveValidator = StandardChessMoveValidator()
+    private val moveValidator: BasicMoveValidator = StandardChessBasicMoveValidator()
 
     override fun addPiece(x: Int, y: Int, piece: Piece) {
         if (!isWithinBounds(x, y)) {
@@ -49,14 +49,14 @@ class StandardChessBoard(override val positions: Array<Array<Position>> = initia
         return piecePositions
     }
 
-    override fun getAllValidMoves(playerColor: Color): Set<Move> {
+    override fun getAllValidMoves(playerColor: Color): Set<BasicMove> {
         val moves = getAllPlayerMoves(playerColor)
         return moves.filter { m -> moveValidator.isMoveValid(this, m) }.toSet()
     }
 
-    private fun getAllPlayerMoves(playerColor: Color): MutableSet<Move> {
+    private fun getAllPlayerMoves(playerColor: Color): MutableSet<BasicMove> {
         val piecePositions = getAllPlayerPiecePositions(playerColor)
-        val moves = mutableSetOf<Move>()
+        val moves = mutableSetOf<BasicMove>()
         for (position in piecePositions) {
             val piece = position.piece
             for (rule in piece.getAppliedRules()) {
@@ -67,11 +67,10 @@ class StandardChessBoard(override val positions: Array<Array<Position>> = initia
     }
 
     override fun performMove(move: Move): Board {
-        if (!moveValidator.isMoveValid(this, move))
-            throw InvalidMoveException("Move $move is not valid on this board.")
+        if (move is BasicMove && !moveValidator.isMoveValid(this, move))
+            throw InvalidMoveException("BasicMove $move is not valid on this board.")
         val board: Board = this.clone()
-        board.positions[move.from.y][move.from.x].piece = NullPiece()
-        board.positions[move.to.y][move.to.x].piece = move.usedPiece
+        move.apply(board)
         return board
     }
 
