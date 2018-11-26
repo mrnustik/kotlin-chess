@@ -12,7 +12,7 @@ import java.util.*
 
 class StandardChessBoard(override val positions: Array<Array<Position>> = initializeEmptyPositions()) : Board {
     override fun isPositionUnderAttack(x: Int, y: Int, playerColor: Color): Boolean {
-        return getAllValidMoves(playerColor)
+        return getAllPlayerMoves(playerColor)
                 .any { it.to.x == x && it.to.y == y }
     }
 
@@ -50,6 +50,11 @@ class StandardChessBoard(override val positions: Array<Array<Position>> = initia
     }
 
     override fun getAllValidMoves(playerColor: Color): Set<Move> {
+        val moves = getAllPlayerMoves(playerColor)
+        return moves.filter { m -> moveValidator.isMoveValid(this, m) }.toSet()
+    }
+
+    private fun getAllPlayerMoves(playerColor: Color): MutableSet<Move> {
         val piecePositions = getAllPlayerPiecePositions(playerColor)
         val moves = mutableSetOf<Move>()
         for (position in piecePositions) {
@@ -58,7 +63,7 @@ class StandardChessBoard(override val positions: Array<Array<Position>> = initia
                 moves.addAll(rule.getValidMoves(this, position))
             }
         }
-        return moves.filter { m -> moveValidator.isMoveValid(this, m) }.toSet()
+        return moves
     }
 
     override fun performMove(move: Move): Board {

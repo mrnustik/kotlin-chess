@@ -1,5 +1,7 @@
 package net.mrnustik.chess.moves.validator
 
+import assertk.assert
+import assertk.assertions.*
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
 import net.mrnustik.chess.board.StandardChessBoard
@@ -44,6 +46,29 @@ class StandardChessMoveValidatorTests  {
 
         //Assert
         assertTrue(isValid)
+    }
+
+
+    @Test
+    fun isMoveValid_whenKingMovesIntoCheck_returnsFalse()
+    {
+        //Arrange
+        val board = createEmptyBoard()
+        board.addPiece(0,0, pieceFactory.createKing(Color.BLACK))
+        board.addPiece(3,0, pieceFactory.createKing(Color.WHITE))
+        board.addPiece(4,7,pieceFactory.createRook(Color.BLACK))
+        val e4Opening = Move(board.positions[0][3], board.positions[0][4])
+        val validator = StandardChessMoveValidator()
+
+        //Act
+        val isValid = validator.isMoveValid(board, e4Opening)
+
+        //Assert
+        assert(isValid).isFalse()
+    }
+
+    private fun createEmptyBoard(): Board {
+        return StandardChessBoard()
     }
 
 }
