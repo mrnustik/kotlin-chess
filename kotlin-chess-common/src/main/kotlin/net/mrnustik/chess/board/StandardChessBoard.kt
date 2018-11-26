@@ -8,6 +8,7 @@ import net.mrnustik.chess.moves.validator.MoveValidator
 import net.mrnustik.chess.moves.validator.StandardChessMoveValidator
 import net.mrnustik.chess.pieces.NullPiece
 import net.mrnustik.chess.pieces.Piece
+import java.util.*
 
 class StandardChessBoard(override val positions: Array<Array<Position>> = initializeEmptyPositions()) : Board {
     private val moveValidator: MoveValidator = StandardChessMoveValidator()
@@ -70,6 +71,19 @@ class StandardChessBoard(override val positions: Array<Array<Position>> = initia
 
     private fun isWithinBounds(x: Int, y: Int): Boolean {
         return x in (0..7) && y in (0..7)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is StandardChessBoard) return false
+
+        if (!positions.contentDeepEquals(other.positions)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return Arrays.hashCode(positions)
     }
 
     companion object {

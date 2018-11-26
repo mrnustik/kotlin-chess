@@ -1,5 +1,7 @@
 package net.mrnustik.chess.board
 
+import assertk.assert
+import assertk.assertions.*
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.exceptions.InvalidMoveException
@@ -9,7 +11,7 @@ import net.mrnustik.chess.pieces.factory.StandardPieceFactory
 import org.junit.Assert.*
 import org.junit.Test
 
-class BoardTests {
+class StandardChessBoardTests {
     val pieceFactory : PieceFactory = StandardPieceFactory()
 
     @Test(expected = IllegalArgumentException::class)
@@ -115,5 +117,19 @@ class BoardTests {
 
         //Act
         board.performMove(e1toe2Opening)
+    }
+
+    @Test
+    fun equals_equalBoards_returnsTrue() {
+        //Arrange
+        val boardFactory = StandardBoardFactory(StandardPieceFactory())
+        val board1 = boardFactory.createBoard()
+        val board2 = boardFactory.createBoard()
+
+        //Act
+        val result = board1.equals(board2)
+
+        //Assert
+        assert(result).isTrue()
     }
 }
