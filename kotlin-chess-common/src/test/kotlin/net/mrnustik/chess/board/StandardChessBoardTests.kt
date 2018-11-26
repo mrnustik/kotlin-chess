@@ -148,4 +148,31 @@ class StandardChessBoardTests {
         //Assert
         assert(result).isFalse()
     }
+
+
+    @Test
+    fun isPositionUnderAttack_whenPositionIsAttacked_returnsTrue() {
+        //Arrange
+        val boardFactory = StandardBoardFactory(StandardPieceFactory())
+        val board = boardFactory.createBoard()
+
+        //Act
+        val result = board.isPositionUnderAttack(4,2, Color.WHITE)
+
+        //Assert
+        assert(result).isTrue()
+    }
+
+    @Test
+    fun isPositionUnderAttack_whenPositionIsNotAttacked_returnsFalse() {
+        //Arrange
+        val boardFactory = StandardBoardFactory(StandardPieceFactory())
+        val board = boardFactory.createBoard()
+
+        //Act
+        val result = board.isPositionUnderAttack(4,2, Color.BLACK)
+
+        //Assert
+        assert(result).isFalse()
+    }
 }

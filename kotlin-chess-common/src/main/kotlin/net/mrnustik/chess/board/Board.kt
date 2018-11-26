@@ -11,6 +11,7 @@ interface Board {
     fun getAllPiecePositions(): Set<Position>
     fun getAllPlayerPiecePositions(playerColor: Color): Set<Position>
     fun getAllValidMoves(playerColor: Color): Set<Move>
+    fun isPositionUnderAttack(x: Int, y: Int, playerColor: Color): Boolean
     fun clone(): Board
     fun performMove(move: Move): Board
 }

@@ -11,6 +11,11 @@ import net.mrnustik.chess.pieces.Piece
 import java.util.*
 
 class StandardChessBoard(override val positions: Array<Array<Position>> = initializeEmptyPositions()) : Board {
+    override fun isPositionUnderAttack(x: Int, y: Int, playerColor: Color): Boolean {
+        return getAllValidMoves(playerColor)
+                .any { it.to.x == x && it.to.y == y }
+    }
+
     private val moveValidator: MoveValidator = StandardChessMoveValidator()
 
     override fun addPiece(x: Int, y: Int, piece: Piece) {
