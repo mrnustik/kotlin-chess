@@ -7,6 +7,7 @@ import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.factory.BoardFactory
 import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.moves.Move
+import net.mrnustik.chess.pieces.*
 import net.mrnustik.chess.pieces.factory.PieceFactory
 import net.mrnustik.chess.pieces.factory.StandardPieceFactory
 import net.mrnustik.chess.player.Player
@@ -93,5 +94,40 @@ class GameTests {
 
         //Then
         assert(activePlayer).isEqualTo(whitePlayer)
+    }
+
+    @Test
+    fun performMove_whenKingMoved_castlePossibilityChangeDetected() {
+        //Given
+        val board = boardFactory.createBoard()
+        board.positions[1][4].piece = NullPiece();
+        val whitePlayer = TestingPlayer(Color.WHITE)
+        val blackPlayer = TestingPlayer(Color.BLACK)
+        val game = Game(board, whitePlayer, blackPlayer)
+        val move = Move(game.board.positions[0][4], game.board.positions[1][4])
+
+        //When
+        game.performMove(move)
+
+        //Then
+        assert(game.castlePossibilitiesMap[Color.WHITE]!!.isAnyCastlePossible()).isFalse()
+    }
+
+    @Test
+    fun performMove_whenQueenSideRookMoved_castlePossibilityChangeDetected() {
+        //Given
+        val board = boardFactory.createBoard()
+        board.positions[1][0].piece = NullPiece();
+        val whitePlayer = TestingPlayer(Color.WHITE)
+        val blackPlayer = TestingPlayer(Color.BLACK)
+        val game = Game(board, whitePlayer, blackPlayer)
+        val move = Move(game.board.positions[0][0], game.board.positions[1][0])
+
+        //When
+        game.performMove(move)
+
+        //Then
+        assert(game.castlePossibilitiesMap[Color.WHITE]!!.isAnyCastlePossible()).isTrue()
+        assert(game.castlePossibilitiesMap[Color.WHITE]!!.isQueenCastlePossible).isFalse()
     }
 }
