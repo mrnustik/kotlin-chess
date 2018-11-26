@@ -76,7 +76,13 @@ class StandardChessBoard(override val positions: Array<Array<Position>> = initia
     }
 
     override fun clone(): Board {
-        return StandardChessBoard(positions.clone())
+        val positions = initializeEmptyPositions()
+        for(x in (0..7)) {
+            for(y in (0..7)) {
+                positions[y][x].piece = this.positions[y][x].piece
+            }
+        }
+        return StandardChessBoard(positions)
     }
 
     private fun isWithinBounds(x: Int, y: Int): Boolean {
@@ -87,7 +93,13 @@ class StandardChessBoard(override val positions: Array<Array<Position>> = initia
         if (this === other) return true
         if (other !is StandardChessBoard) return false
 
-        if (!positions.contentDeepEquals(other.positions)) return false
+        for(x in (0..7)) {
+            for(y in (0..7)) {
+                if(positions[y][x] != other.positions[y][x]) {
+                    return false
+                }
+            }
+        }
 
         return true
     }
