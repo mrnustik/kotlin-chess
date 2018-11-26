@@ -1,7 +1,7 @@
 package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
-import net.mrnustik.chess.board.Board
+import net.mrnustik.chess.board.StandardChessBoard
 import net.mrnustik.chess.moves.Move
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -26,7 +26,7 @@ class PawnMovementRuleTests : BaseRuleTests() {
     @Test
     fun getValidMoves_whenPawnBlocked_returnsNoMoves(){
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(0,1, pieceFactory.createPawn(Color.WHITE))
         board.addPiece(0,2, pieceFactory.createPawn(Color.WHITE))
         val rule = PawnMovementRule()
@@ -41,7 +41,7 @@ class PawnMovementRuleTests : BaseRuleTests() {
     @Test
     fun getValidMoves_whenDoubleStepIsBlocked_returnsValidMoves(){
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(0,1,pieceFactory.createPawn(Color.WHITE))
         board.addPiece(0,3,pieceFactory.createPawn(Color.WHITE))
         val rule = PawnMovementRule()

@@ -2,6 +2,7 @@ package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
+import net.mrnustik.chess.board.StandardChessBoard
 import net.mrnustik.chess.moves.Move
 import net.mrnustik.chess.pieces.NullPiece
 import org.junit.Assert.assertEquals
@@ -13,7 +14,7 @@ class BishopMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenBlocked_noMovesReturned(){
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(3,3,pieceFactory.createBishop(Color.WHITE))
         board.addPiece(2,2,pieceFactory.createPawn(Color.WHITE))
         board.addPiece(4,4,pieceFactory.createPawn(Color.WHITE))
@@ -45,7 +46,7 @@ class BishopMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenMovesAvailableInAllQuadrants_availableMovesReturned(){
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(4,4, pieceFactory.createBishop(Color.BLACK))
         val rule = BishopMovementRule()
 
@@ -59,7 +60,7 @@ class BishopMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenEnemyCanBeTaken_attackMoveReturned(){
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(3,3,pieceFactory.createBishop(Color.WHITE))
         board.addPiece(2,2,pieceFactory.createPawn(Color.WHITE))
         board.addPiece(4,4,pieceFactory.createPawn(Color.BLACK))

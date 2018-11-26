@@ -10,7 +10,7 @@ class RookMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenInTheMiddleOfBoard_returnsAllMoves() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(4,4, pieceFactory.createRook(Color.WHITE))
         val rule = RookMovementRule()
 
@@ -24,7 +24,7 @@ class RookMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenBlockedInCorner_returnsAllMoves() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(0,0, pieceFactory.createRook(Color.WHITE))
         board.addPiece(0,1, pieceFactory.createRook(Color.WHITE))
         board.addPiece(1,0, pieceFactory.createRook(Color.WHITE))

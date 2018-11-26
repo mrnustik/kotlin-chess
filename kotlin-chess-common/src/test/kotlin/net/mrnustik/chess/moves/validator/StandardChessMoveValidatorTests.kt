@@ -2,6 +2,7 @@ package net.mrnustik.chess.moves.validator
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
+import net.mrnustik.chess.board.StandardChessBoard
 import net.mrnustik.chess.board.factory.StandardBoardFactory
 import net.mrnustik.chess.moves.Move
 import net.mrnustik.chess.pieces.factory.PieceFactory
@@ -17,7 +18,7 @@ class StandardChessMoveValidatorTests  {
     fun isMoveValid_whenTakingOwnPiece_returnsFalse()
     {
         //Arrange
-        val board = Board()
+        val board = StandardChessBoard()
         board.addPiece(0,0, pieceFactory.createRook(Color.BLACK))
         board.addPiece(0,1, pieceFactory.createRook(Color.BLACK))
         val move = Move(board.positions[0][0], board.positions[1][0])

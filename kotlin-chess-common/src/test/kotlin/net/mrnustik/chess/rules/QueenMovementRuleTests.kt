@@ -10,7 +10,7 @@ class QueenMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenNotBlocked_returnsAllMoves() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(4,4, pieceFactory.createQueen(Color.BLACK))
         val rule = QueenMovementRule()
 
@@ -24,7 +24,7 @@ class QueenMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenBlockedAtAllSides_returnsAllMoves() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(4,4, pieceFactory.createQueen(Color.BLACK))
         board.addPiece(5,4, pieceFactory.createKing(Color.WHITE))
         board.addPiece(3,4, pieceFactory.createKing(Color.WHITE))

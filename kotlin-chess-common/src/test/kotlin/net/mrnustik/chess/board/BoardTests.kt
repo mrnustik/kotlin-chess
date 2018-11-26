@@ -15,7 +15,7 @@ class BoardTests {
     @Test(expected = IllegalArgumentException::class)
     fun addPiece_outOfBoardBounds_throwsArgumentException(){
         //Arrange
-        val board = Board()
+        val board = StandardChessBoard()
         val piece = pieceFactory.createBishop(Color.WHITE)
 
         //Act
@@ -27,7 +27,7 @@ class BoardTests {
     @Test
     fun addPiece_withinBounds_addsPiece(){
         //Arrange
-        val board = Board()
+        val board = StandardChessBoard()
         val piece = pieceFactory.createBishop(Color.WHITE)
 
         //Act
@@ -40,7 +40,7 @@ class BoardTests {
     @Test
     fun getAllPiecePositions_withOnePiece_returnsItsPosition(){
         //Arrange
-        val board = Board()
+        val board = StandardChessBoard()
         val piece = pieceFactory.createBishop(Color.WHITE)
         board.addPiece(0,2, piece)
 
@@ -59,7 +59,7 @@ class BoardTests {
     @Test
     fun getAllPlayerPiecePositions_withOnePieceOfEachColor_returnsOnlyOnePosition(){
         //Arrange
-        val board = Board()
+        val board = StandardChessBoard()
         val whitePiece = pieceFactory.createBishop(Color.WHITE)
         board.addPiece(0,2, whitePiece)
         val blackPiece = pieceFactory.createBishop(Color.BLACK)

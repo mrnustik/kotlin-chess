@@ -2,6 +2,7 @@ package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
+import net.mrnustik.chess.board.StandardChessBoard
 import net.mrnustik.chess.moves.Move
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -12,7 +13,7 @@ class PawnAttackingRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenCanAttackOnLeft_returnsValidLeftMove() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(1,1,pieceFactory.createPawn(Color.WHITE))
         board.addPiece(0,2,pieceFactory.createBishop(Color.BLACK))
         val rule = PawnAttackingRule()
@@ -28,7 +29,7 @@ class PawnAttackingRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenCanAttackOnRight_returnsValidRightMove() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(1,1, pieceFactory.createPawn(Color.WHITE))
         board.addPiece(2,2, pieceFactory.createBishop(Color.BLACK))
         val rule = PawnAttackingRule()
@@ -44,7 +45,7 @@ class PawnAttackingRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenNoPiecesCanBeAttacked_noMovesReturned() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(1,1, pieceFactory.createPawn(Color.WHITE))
         val rule = PawnAttackingRule()
 

@@ -2,11 +2,12 @@ package net.mrnustik.chess.board.factory
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
+import net.mrnustik.chess.board.StandardChessBoard
 import net.mrnustik.chess.pieces.factory.PieceFactory
 
 class StandardBoardFactory(val pieceFactory: PieceFactory) : BoardFactory {
     override fun createBoard(): Board {
-        val board = Board()
+        val board = StandardChessBoard()
         createWhitePieces(board)
         createBlackPieces(board)
         return board

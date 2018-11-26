@@ -2,6 +2,7 @@ package net.mrnustik.chess.rules
 
 import net.mrnustik.chess.Color
 import net.mrnustik.chess.board.Board
+import net.mrnustik.chess.board.StandardChessBoard
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -10,7 +11,7 @@ class KingMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenNoMovesBlocked_returnsAll() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(4,4,pieceFactory.createKing(Color.BLACK))
         val rule = KingMovementRule()
 
@@ -24,7 +25,7 @@ class KingMovementRuleTests : BaseRuleTests() {
     @Test
     fun getMoves_whenSomeMovesBlockedByCorner_returnsAll() {
         //Arrange
-        val board = Board()
+        val board = createEmptyBoard()
         board.addPiece(0,0, pieceFactory.createKing(Color.BLACK))
         val rule = KingMovementRule()
 
